@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stake Fish 1.0</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 320px; font: 13px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif; color: #1c1c1a; background: #fafaf7; }
+    header { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: #1c1c1a; color: #fafaf5; }
+    header img { width: 30px; height: 30px; border-radius: 8px; }
+    header h1 { font-size: 15px; font-weight: 800; letter-spacing: -0.2px; }
+    header .ver { margin-left: auto; font-size: 10px; background: rgba(16,185,129,.18); color: #34d399; padding: 3px 8px; border-radius: 999px; font-weight: 700; }
+    main { padding: 12px 14px 14px; }
+    .card { background: #fff; border: 1px solid #e7e7e2; border-radius: 12px; padding: 10px 12px; margin-bottom: 10px; }
+    .site { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #d4d4d0; flex: none; }
+    .dot.on { background: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,.15); }
+    .muted { color: #737370; font-size: 11px; }
+    .best { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; }
+    .best .san { font-size: 20px; font-weight: 800; color: #059669; }
+    .best .eval { font-weight: 800; }
+    .coach { margin-top: 6px; font-size: 12px; color: #44443f; background: #f2fbf6; border: 1px solid #d3efe0; border-radius: 8px; padding: 7px 9px; }
+    label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #737370; margin-bottom: 4px; }
+    select { width: 100%; padding: 7px 8px; border: 1px solid #ddd; border-radius: 8px; font: inherit; background: #fff; }
+    .row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+    .row .lbl { font-weight: 600; font-size: 12px; }
+    input[type="range"] { width: 130px; accent-color: #10b981; }
+    .switch { position: relative; width: 36px; height: 20px; flex: none; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; inset: 0; background: #d4d4d0; border-radius: 999px; transition: 0.2s; }
+    .slider:before { content: ""; position: absolute; height: 14px; width: 14px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: 0.2s; }
+    input:checked + .slider { background: #10b981; }
+    input:checked + .slider:before { transform: translateX(16px); }
+    footer { padding: 0 14px 12px; font-size: 10.5px; color: #8a8a85; text-align: center; }
+    footer b { color: #10b981; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="Stake Fish logo" />
+    <h1>Stake Fish</h1>
+    <span class="ver">v1.0</span>
+  </header>
+  <main>
+    <div class="card">
+      <div class="site"><span class="dot" id="dot"></span><span id="siteName">No chess site detected</span></div>
+      <div class="muted" id="siteHint">Open a game on Chess.com or Lichess — Stake Fish reads the board live, no screenshots needed.</div>
+      <div class="best" id="best" style="display:none;">
+        <span class="san" id="bestSan">—</span>
+        <span class="eval" id="bestEval"></span>
+        <span class="muted" id="bestDepth"></span>
+      </div>
+      <div class="coach" id="coach" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <label for="style">Advisor style</label>
+      <select id="style">
+        <option value="gm">♟ GM Coach (Gotham-style hype)</option>
+        <option value="bot">🤖 Bot moves (plain engine)</option>
+      </select>
+      <div class="row">
+        <span class="lbl">Search depth</span>
+        <span><b id="depthVal">12</b></span>
+      </div>
+      <input type="range" id="depth" min="8" max="16" step="1" style="width:100%;margin-top:6px;" />
+      <div class="row">
+        <span class="lbl">Show best-move arrow</span>
+        <span class="switch"><input type="checkbox" id="showArrows" /><span class="slider"></span></span>
+      </div>
+      <div class="row">
+        <span class="lbl">Auto-analyze live games</span>
+        <span class="switch"><input type="checkbox" id="autoRun" /><span class="slider"></span></span>
+      </div>
+    </div>
+  </main>
+  <footer>Runs 100% locally · Stake Fish 1.0 engine (Stockfish NNUE core) · <b>UCI API</b></footer>
+  <script src="popup.js"></script>
+</body>
+</html>

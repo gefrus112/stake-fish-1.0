@@ -14,24 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
+  metadataBase: new URL("http://localhost:3000"),
+  title: "Stake Fish 1.0 — Chess Analyzer & Live Coach",
+  description:
+    "Stake Fish 1.0: analyze your games by pasting a Lichess or Chess.com link, get live best-move coaching on the board, and grab the browser extension for Chrome, Edge and Opera GX. Powered by the Stake Fish UCI engine (Stockfish NNUE core).",
+  keywords: ["chess", "analysis", "Stake Fish", "Stockfish", "UCI", "chess extension", "lichess", "chess.com"],
+  authors: [{ name: "Stake Fish" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "Stake Fish 1.0 — Chess Analyzer & Live Coach",
+    description: "Paste a game link, get engine-grade review. Live best moves while you play. Chrome/Edge extension included.",
+    siteName: "Stake Fish",
     type: "website",
+    images: ["/icon.png"],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    card: "summary",
+    title: "Stake Fish 1.0 — Chess Analyzer",
+    description: "Live chess analysis + game review by link. UCI engine in your browser.",
   },
 };
 
