@@ -1,20 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "Stake Fish 1.0 — Live Chess Coach",
-  "version": "1.0.0",
-  "description": "Stake Fish reads live games on Chess.com and Lichess straight from the page (no screenshots), analyzes them with the Stake Fish engine and draws the best move right on the board.",
+  "name": "Stake Fish 1.2 — Live Chess Coach",
+  "version": "1.2.0",
+  "description": "Stake Fish connects to live games on Chess.com, Lichess and ChessKid straight from the page (no screenshots), analyzes every move with the Stake Fish engine and draws the best move right on the board.",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
   "permissions": ["storage"],
-  "host_permissions": ["*://*.chess.com/*", "*://*.lichess.org/*"],
+  "host_permissions": ["*://*.chess.com/*", "*://*.lichess.org/*", "*://*.chesskid.com/*"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Stake Fish 1.0 — Live Chess Coach",
+    "default_title": "Stake Fish 1.2 — Live Chess Coach",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -24,7 +24,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.chess.com/*", "*://*.lichess.org/*"],
+      "matches": ["*://*.chess.com/*", "*://*.lichess.org/*", "*://*.chesskid.com/*"],
       "js": ["content.js"],
       "run_at": "document_idle",
       "all_frames": false
@@ -33,7 +33,7 @@
   "web_accessible_resources": [
     {
       "resources": ["stockfish-19-lite-single.js", "stockfish-19-lite-single.wasm"],
-      "matches": ["*://*.chess.com/*", "*://*.lichess.org/*"]
+      "matches": ["*://*.chess.com/*", "*://*.lichess.org/*", "*://*.chesskid.com/*"]
     }
   ]
 }

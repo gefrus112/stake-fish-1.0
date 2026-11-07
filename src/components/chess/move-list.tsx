@@ -26,21 +26,21 @@ export function MoveList({ moves, classes, viewPly, onSelectPly }: MoveListProps
 
   if (!moves.length) {
     return (
-      <div className="rounded-xl border border-dashed p-4 text-center text-xs text-muted-foreground">
+      <div className="rounded-xl border border-dashed border-white/15 p-4 text-center text-xs text-blue-200/40">
         No moves yet — import a game or play on the board.
       </div>
     );
   }
 
   return (
-    <div className="max-h-64 overflow-y-auto rounded-xl border" role="list" aria-label="Move list">
-      <div className="grid grid-cols-[2.4rem_1fr_1fr] gap-px bg-neutral-200 text-sm">
-        <div className="sticky top-0 z-10 bg-neutral-100 px-2 py-1.5 text-[11px] font-bold text-neutral-500">#</div>
-        <div className="sticky top-0 z-10 bg-neutral-100 px-2 py-1.5 text-[11px] font-bold text-neutral-500">White</div>
-        <div className="sticky top-0 z-10 bg-neutral-100 px-2 py-1.5 text-[11px] font-bold text-neutral-500">Black</div>
+    <div className="max-h-64 overflow-y-auto rounded-2xl border border-white/10" role="list" aria-label="Move list">
+      <div className="grid grid-cols-[2.4rem_1fr_1fr] gap-px bg-white/5 text-sm">
+        <div className="sticky top-0 z-10 bg-[#0d1a30] px-2 py-1.5 text-[11px] font-bold text-blue-200/50">#</div>
+        <div className="sticky top-0 z-10 bg-[#0d1a30] px-2 py-1.5 text-[11px] font-bold text-blue-200/50">White</div>
+        <div className="sticky top-0 z-10 bg-[#0d1a30] px-2 py-1.5 text-[11px] font-bold text-blue-200/50">Black</div>
         {rows.map((row) => (
           <div key={row.no} className="col-span-3 grid grid-cols-[2.4rem_1fr_1fr] gap-px">
-            <div className="bg-neutral-50 px-2 py-1.5 text-xs tabular-nums text-neutral-500">{row.no}.</div>
+            <div className="bg-white/[0.02] px-2 py-1.5 text-xs tabular-nums text-blue-200/40">{row.no}.</div>
             {[row.white, row.black].map((cell, i) =>
               cell ? (
                 <button
@@ -50,8 +50,8 @@ export function MoveList({ moves, classes, viewPly, onSelectPly }: MoveListProps
                   onClick={() => onSelectPly(cell.idx + 1)}
                   className={`flex items-center gap-1.5 px-2 py-1.5 text-left font-medium transition-colors ${
                     viewPly === cell.idx + 1
-                      ? "bg-emerald-100 text-emerald-900"
-                      : "bg-white hover:bg-neutral-100"
+                      ? "bg-blue-500/20 text-blue-100"
+                      : "bg-white/[0.03] hover:bg-white/10"
                   }`}
                 >
                   {classes[cell.idx] && (
@@ -63,7 +63,7 @@ export function MoveList({ moves, classes, viewPly, onSelectPly }: MoveListProps
                   <span className="truncate">{cell.mv.san}</span>
                 </button>
               ) : (
-                <div key={i} className="bg-white" />
+                <div key={i} className="bg-white/[0.03]" />
               )
             )}
           </div>

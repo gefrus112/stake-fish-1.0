@@ -217,6 +217,7 @@
   function detectSite() {
     const h = location.hostname;
     if (h.endsWith('lichess.org')) return 'lichess';
+    if (h.endsWith('chesskid.com')) return 'chesskid';
     if (h.endsWith('chess.com')) return 'chesscom';
     return null;
   }
@@ -227,7 +228,7 @@
       if (cb) return cb.parentElement || cb.closest('.cg-wrap');
       return document.querySelector('.cg-wrap');
     }
-    const candidates = ['#board-single', 'wc-chess-board', 'chess-board', '.chess-board-component .board', '.board'];
+    const candidates = ['#board-single', 'wc-chess-board', 'chess-board', '.chess-board-component .board', '#board', '.board-bg .board', '.board'];
     for (const sel of candidates) {
       const el = document.querySelector(sel);
       if (el && (el.querySelector('.piece') || (el.shadowRoot && el.shadowRoot.querySelector('.piece')))) return el;
@@ -305,13 +306,14 @@
 
   function countPlies(site) {
     try {
-      if (site === 'chesscom') {
+      if (site === 'chesscom' || site === 'chesskid') {
         let max = 0;
         document.querySelectorAll('[data-ply]').forEach((n) => {
           const v = parseInt(n.getAttribute('data-ply'), 10);
           if (!isNaN(v) && v > max) max = v;
         });
-        return max;
+        if (max > 0) return max;
+        return document.querySelectorAll('.move, .moves li, [class*=move-]').length;
       }
       const moves = document.querySelectorAll('.moves move, main moves move, move');
       return moves.length;
@@ -566,6 +568,7 @@
     let pieces = [];
     try {
       pieces = site === 'lichess' ? extractLichessPieces(boardEl) : extractChesscomPieces(boardEl);
+      if (pieces.length < 2 && site === 'chesskid') pieces = extractChesscomPieces(boardEl.shadowRoot ? boardEl.shadowRoot.querySelector('.board, [class*=board]') || boardEl : boardEl);
     } catch (e) {
       console.warn(DEBUG, 'extract failed', e);
       return;
@@ -614,5 +617,5 @@
 
   loadSettings();
   startScan();
-  console.info(DEBUG, 'Stake Fish 1.0 active on', location.hostname);
+  console.info(DEBUG, 'Stake Fish 1.2 active on', location.hostname);
 })();

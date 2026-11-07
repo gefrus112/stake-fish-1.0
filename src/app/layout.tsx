@@ -15,26 +15,26 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("http://localhost:3000"),
-  title: "Stake Fish 1.0 — Chess Analyzer & Live Coach",
+  title: "Stake Fish 1.2 — Live Chess Analyzer, Link Watcher & Jessie Bot",
   description:
-    "Stake Fish 1.0: analyze your games by pasting a Lichess or Chess.com link, get live best-move coaching on the board, and grab the browser extension for Chrome, Edge and Opera GX. Powered by the Stake Fish UCI engine (Stockfish NNUE core).",
-  keywords: ["chess", "analysis", "Stake Fish", "Stockfish", "UCI", "chess extension", "lichess", "chess.com"],
+    "Stake Fish 1.2: paste a live Chess.com / Lichess game link and watch it on our board with best-move arrows, play against Jessie the chess bot coach, review any game, and grab the v1.2 extension for Chrome, Edge and Opera GX (Chess.com + Lichess + ChessKid). Powered by the Stake Fish UCI engine.",
+  keywords: ["chess", "analysis", "Stake Fish", "Stockfish", "UCI", "chess extension", "lichess", "chess.com", "chesskid", "jessie bot"],
   authors: [{ name: "Stake Fish" }],
   icons: {
     icon: "/icon.png",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Stake Fish 1.0 — Chess Analyzer & Live Coach",
-    description: "Paste a game link, get engine-grade review. Live best moves while you play. Chrome/Edge extension included.",
+    title: "Stake Fish 1.2 — Live Chess Analyzer & Jessie Bot",
+    description: "Watch live game links on our board with best-move arrows. Play Jessie. Chrome/Edge/OperaGX extension for Chess.com, Lichess & ChessKid.",
     siteName: "Stake Fish",
     type: "website",
     images: ["/icon.png"],
   },
   twitter: {
     card: "summary",
-    title: "Stake Fish 1.0 — Chess Analyzer",
-    description: "Live chess analysis + game review by link. UCI engine in your browser.",
+    title: "Stake Fish 1.2 — Chess Analyzer",
+    description: "Live link watching, Jessie bot, game review. UCI engine in your browser.",
   },
 };
 

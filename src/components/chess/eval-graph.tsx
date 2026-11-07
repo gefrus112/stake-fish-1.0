@@ -31,7 +31,7 @@ export function EvalGraph({ evals, viewPly, onSelectPly }: EvalGraphProps) {
 
   if (points.length < 2) {
     return (
-      <div className="rounded-xl border border-dashed p-4 text-center text-xs text-muted-foreground">
+      <div className="rounded-xl border border-dashed border-white/15 p-4 text-center text-xs text-blue-200/40">
         Run the full game analysis to see the evaluation graph.
       </div>
     );
@@ -42,7 +42,7 @@ export function EvalGraph({ evals, viewPly, onSelectPly }: EvalGraphProps) {
   const viewX = points[Math.min(viewPly, points.length - 1)]?.x ?? PAD;
 
   return (
-    <div className="overflow-hidden rounded-xl border bg-neutral-900">
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#060b16]">
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="h-24 w-full cursor-pointer"
@@ -50,10 +50,10 @@ export function EvalGraph({ evals, viewPly, onSelectPly }: EvalGraphProps) {
         role="img"
         aria-label="Evaluation graph across the game"
       >
-        <rect x={0} y={0} width={W} height={H} fill="#262421" />
-        <path d={areaPath} fill="#f4f4ee" opacity={0.92} />
-        <path d={linePath} fill="none" stroke="#10b981" strokeWidth={2} vectorEffect="non-scaling-stroke" />
-        <line x1={viewX} y1={0} x2={viewX} y2={H} stroke="#10b981" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+        <rect x={0} y={0} width={W} height={H} fill="#0a1424" />
+        <path d={areaPath} fill="#dbe7f5" opacity={0.92} />
+        <path d={linePath} fill="none" stroke="#3b82f6" strokeWidth={2} vectorEffect="non-scaling-stroke" />
+        <line x1={viewX} y1={0} x2={viewX} y2={H} stroke="#3b82f6" strokeWidth={2} vectorEffect="non-scaling-stroke" />
         {points.map((p) => (
           <g key={p.ply}>
             <circle cx={p.x} cy={p.y} r={14} fill="transparent" onClick={() => onSelectPly(p.ply)} />
@@ -62,7 +62,7 @@ export function EvalGraph({ evals, viewPly, onSelectPly }: EvalGraphProps) {
               cy={p.y}
               r={viewPly === p.ply ? 4.5 : 2.5}
               fill={viewPly === p.ply ? "#10b981" : "#9ca3af"}
-              stroke="#262421"
+              stroke="#0a1424"
               strokeWidth={1}
               pointerEvents="none"
             />

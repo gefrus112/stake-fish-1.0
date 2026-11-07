@@ -30,6 +30,8 @@ export interface EngineInfo {
 export interface AnalyzeOptions {
   depth?: number;
   multipv?: number;
+  /** UCI Skill Level 0-20 (weaker play for the bot coach). */
+  skill?: number;
 }
 
 const WASM_URL = "/stockfish/stockfish-19-lite-single.js";
@@ -108,6 +110,11 @@ class FishStickEngine {
     this.setStatus("thinking");
 
     this.send(`setoption name MultiPV value ${Math.max(1, Math.min(5, opts.multipv ?? 3))}`);
+    if (opts.skill != null) {
+      this.send(`setoption name Skill Level value ${Math.max(0, Math.min(20, Math.round(opts.skill)))}`);
+    } else {
+      this.send("setoption name Skill Level value 20");
+    }
     this.send(`position fen ${fen}`);
     this.send(`go depth ${Math.max(6, Math.min(26, opts.depth ?? 12))}`);
 

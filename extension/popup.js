@@ -4,6 +4,7 @@ const $ = (id) => document.getElementById(id);
 const SITES = {
   lichess: { name: 'Lichess', hint: 'Watching your Lichess game — best move appears right on the board.' },
   chesscom: { name: 'Chess.com', hint: 'Watching your Chess.com game — best move appears right on the board.' },
+  chesskid: { name: 'ChessKid', hint: 'Watching your ChessKid game — best move appears right on the board.' },
 };
 
 function renderSite(site, at) {

@@ -56,23 +56,23 @@ export function EnginePanel(p: EnginePanelProps) {
       {/* engine status */}
       <div className="rounded-xl border bg-[#1c1c1a] p-4 text-[#fafaf5] shadow-sm">
         <div className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15">
-            <Fish className="h-4.5 w-4.5 text-emerald-400" />
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/15">
+            <Fish className="h-4.5 w-4.5 text-blue-400" />
           </span>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 text-sm font-bold">
-              Stake Fish 1.0
+              Stake Fish 1.2
               {p.status === "thinking" ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin text-emerald-400" />
+                <Loader2 className="h-3.5 w-3.5 animate-spin text-blue-400" />
               ) : (
-                <span className={`h-2 w-2 rounded-full ${p.status === "ready" ? "bg-emerald-400" : "bg-amber-400"}`} />
+                <span className={`h-2 w-2 rounded-full ${p.status === "ready" ? "bg-blue-400" : "bg-amber-400"}`} />
               )}
             </div>
             <div className="truncate text-xs text-neutral-400">
               {p.status === "error" ? (p.statusDetail ?? STATUS_TEXT.error) : STATUS_TEXT[p.status]}
             </div>
           </div>
-          <Badge variant="outline" className="border-emerald-500/30 bg-emerald-500/10 text-emerald-300 text-[10px]">
+          <Badge variant="outline" className="border-blue-400/30 bg-blue-500/10 text-blue-300 text-[10px]">
             UCI · NNUE
           </Badge>
         </div>
@@ -97,13 +97,13 @@ export function EnginePanel(p: EnginePanelProps) {
       {/* best lines */}
       <div>
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-sm font-bold">
+          <h3 className="text-sm font-bold text-white">
             {p.advisorStyle === "gm" ? "GM recommendation" : "Best lines"}
           </h3>
-          <span className="text-xs text-muted-foreground">for {turnLabel} to move</span>
+          <span className="text-xs text-blue-200/50">for {turnLabel} to move</span>
         </div>
         {lines.length === 0 ? (
-          <div className="rounded-xl border border-dashed p-4 text-center text-xs text-muted-foreground">
+          <div className="rounded-xl border border-dashed border-white/15 p-4 text-center text-xs text-blue-200/40">
             {p.gameOver
               ? "Game over — reset or flip the board to keep analyzing."
               : p.autoAnalyze
@@ -121,13 +121,13 @@ export function EnginePanel(p: EnginePanelProps) {
               return (
                 <li
                   key={line.multipv}
-                  className="flex items-center gap-2 rounded-lg border bg-white px-2.5 py-2 text-sm shadow-sm"
+                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-2 text-sm shadow-sm backdrop-blur"
                 >
-                  <span className="flex h-5 w-5 flex-none items-center justify-center rounded bg-neutral-900 text-[10px] font-bold text-white">
+                  <span className="flex h-5 w-5 flex-none items-center justify-center rounded bg-blue-500/20 text-[10px] font-bold text-blue-300">
                     {line.multipv}
                   </span>
                   <ScoreChip score={whitePov} label={scoreLabel} />
-                  <span className="truncate text-xs text-neutral-600 sm:text-[13px]" title={sanLine}>
+                  <span className="truncate text-xs text-blue-100/70 sm:text-[13px]" title={sanLine}>
                     {sanLine || "…"}
                   </span>
                 </li>
@@ -139,17 +139,17 @@ export function EnginePanel(p: EnginePanelProps) {
 
       {/* GM coach text */}
       {p.advisorStyle === "gm" && (
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3">
-          <div className="mb-1 flex items-center gap-1.5 text-xs font-bold text-emerald-700">
+        <div className="rounded-xl border border-blue-400/25 bg-blue-500/10 p-3">
+          <div className="mb-1 flex items-center gap-1.5 text-xs font-bold text-blue-300">
             <Sparkles className="h-3.5 w-3.5" /> GM Coach says
           </div>
-          <p className="min-h-10 text-sm text-emerald-900">
+          <p className="min-h-10 text-sm text-blue-100">
             {p.coachText ?? "Flip on auto-analyze and play a move — I'll tell you what I'd play (and why)."}
           </p>
           <Button
             size="sm"
             variant="outline"
-            className="mt-2 h-7 border-emerald-300 text-emerald-700 hover:bg-emerald-100"
+            className="mt-2 h-7 border-blue-400/40 text-blue-300 hover:bg-blue-500/10"
             onClick={p.onAskCoach}
             disabled={p.coachLoading}
           >
@@ -165,7 +165,7 @@ export function EnginePanel(p: EnginePanelProps) {
           size="sm"
           onClick={p.onPlayBest}
           disabled={!p.canPlayBest || p.status === "error"}
-          className="bg-emerald-600 text-white hover:bg-emerald-700"
+          className="bg-blue-500 text-white hover:bg-blue-400"
         >
           <Play className="h-3.5 w-3.5" /> Play best move
         </Button>
@@ -175,9 +175,9 @@ export function EnginePanel(p: EnginePanelProps) {
       </div>
 
       {/* settings */}
-      <div className="flex flex-col gap-3 rounded-xl border p-4">
+      <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur">
         <div className="flex items-center justify-between">
-          <Label htmlFor="auto" className="text-xs font-semibold text-muted-foreground">
+          <Label htmlFor="auto" className="text-xs font-semibold text-blue-200/60">
             Auto-analyze while playing
           </Label>
           <Switch id="auto" checked={p.autoAnalyze} onCheckedChange={p.onAutoAnalyzeChange} />
@@ -185,14 +185,14 @@ export function EnginePanel(p: EnginePanelProps) {
 
         <div>
           <div className="mb-1.5 flex items-center justify-between">
-            <Label className="text-xs font-semibold text-muted-foreground">Search depth</Label>
+            <Label className="text-xs font-semibold text-blue-200/60">Search depth</Label>
             <span className="text-xs font-bold tabular-nums">{p.depth}</span>
           </div>
           <Slider value={[p.depth]} min={8} max={18} step={1} onValueChange={(v) => p.onDepthChange(v[0] ?? 12)} />
         </div>
 
         <div className="flex items-center justify-between">
-          <Label className="text-xs font-semibold text-muted-foreground">Lines shown</Label>
+          <Label className="text-xs font-semibold text-blue-200/60">Lines shown</Label>
           <Select value={String(p.multipv)} onValueChange={(v) => p.onMultipvChange(Number(v))}>
             <SelectTrigger className="h-8 w-20 text-xs">
               <SelectValue />
@@ -206,7 +206,7 @@ export function EnginePanel(p: EnginePanelProps) {
         </div>
 
         <div className="flex items-center justify-between">
-          <Label className="text-xs font-semibold text-muted-foreground">Advisor style</Label>
+          <Label className="text-xs font-semibold text-blue-200/60">Advisor style</Label>
           <Select value={p.advisorStyle} onValueChange={(v) => p.onAdvisorStyleChange(v as "gm" | "bot")}>
             <SelectTrigger className="h-8 w-[190px] text-xs">
               <SelectValue />
@@ -230,7 +230,7 @@ function ScoreChip({ score, label }: { score: EngineScore; label: string }) {
       className={`flex-none rounded px-1.5 py-0.5 text-[11px] font-bold tabular-nums ${
         whiteBetter
           ? isMate
-            ? "bg-emerald-600 text-white"
+            ? "bg-blue-500 text-white"
             : "bg-neutral-900 text-white"
           : isMate
             ? "bg-red-600 text-white"

@@ -52,3 +52,11 @@ prompt
 server.log
 # Skills directory
 /skills/
+# personal uploads - never publish
+upload/
+scripts/make-jessie.ts
+
+# dev artifacts
+dev.log
+server.log
+*.tsbuildinfo

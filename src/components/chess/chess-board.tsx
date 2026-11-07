@@ -151,15 +151,15 @@ export function ChessBoard({
                   e.preventDefault();
                   if (selected && legalTargets.has(square)) attemptMove(selected, square);
                 }}
-                className="relative flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-500"
+                className="relative flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-400"
                 style={{
                   gridColumn: displayCol + 1,
                   gridRow: displayRow + 1,
-                  backgroundColor: isLight ? "#ebecd0" : "#739552",
+                  backgroundColor: isLight ? "#dfe9f5" : "#5a7fae",
                 }}
               >
-                {isLast && <span className="absolute inset-0 bg-amber-300/50" />}
-                {isSelected && <span className="absolute inset-0 bg-amber-400/60" />}
+                {isLast && <span className="absolute inset-0 bg-sky-300/45" />}
+                {isSelected && <span className="absolute inset-0 bg-sky-400/55" />}
                 {isCheck && (
                   <span
                     className="absolute inset-0"
@@ -170,7 +170,7 @@ export function ChessBoard({
                 {colIdx === 0 && (
                   <span
                     className={`pointer-events-none absolute left-0.5 top-0.5 text-[9px] font-bold sm:text-[11px] ${
-                      isLight ? "text-[#739552]" : "text-[#ebecd0]"
+                      isLight ? "text-[#4c6f9e]" : "text-[#dfe9f5]"
                     }`}
                   >
                     {rank}
@@ -179,7 +179,7 @@ export function ChessBoard({
                 {rowIdx === 7 && (
                   <span
                     className={`pointer-events-none absolute bottom-0 right-1 text-[9px] font-bold sm:text-[11px] ${
-                      isLight ? "text-[#739552]" : "text-[#ebecd0]"
+                      isLight ? "text-[#4c6f9e]" : "text-[#dfe9f5]"
                     }`}
                   >
                     {file}
@@ -187,10 +187,10 @@ export function ChessBoard({
                 )}
 
                 {isTarget && !isCapture && (
-                  <span className="pointer-events-none absolute h-[26%] w-[26%] rounded-full bg-black/25" />
+                  <span className="pointer-events-none absolute h-[26%] w-[26%] rounded-full bg-[#0b1526]/30" />
                 )}
                 {isTarget && isCapture && (
-                  <span className="pointer-events-none absolute inset-[8%] rounded-full border-4 border-black/25" />
+                  <span className="pointer-events-none absolute inset-[8%] rounded-full border-4 border-[#0b1526]/30" />
                 )}
 
                 {piece && (
@@ -201,7 +201,7 @@ export function ChessBoard({
                     }}
                     className={`pointer-events-none relative z-10 leading-none ${
                       interactive ? "cursor-grab active:cursor-grabbing" : ""
-                    } ${piece.color === "w" ? "text-white" : "text-neutral-900"}`}
+                    } ${piece.color === "w" ? "text-white" : "text-[#0b1526]"}`}
                     style={{
                       fontSize: "clamp(1.1rem, 7.4cqw, 3.1rem)",
                       textShadow:
@@ -244,12 +244,12 @@ export function ChessBoard({
                   y1={start.y}
                   x2={end.x}
                   y2={end.y}
-                  stroke="#10b981"
+                  stroke="#3b82f6"
                   strokeWidth={0.18}
                   strokeLinecap="round"
                   opacity={0.9}
                 />
-                <polygon points={`${end.x},${end.y} ${p2} ${p3}`} fill="#10b981" opacity={0.95} />
+                <polygon points={`${end.x},${end.y} ${p2} ${p3}`} fill="#3b82f6" opacity={0.95} />
               </g>
             );
           })()}
@@ -276,7 +276,7 @@ export function ChessBoard({
                   onMove?.({ from: pendingPromotion.from, to: pendingPromotion.to, promotion: p.piece });
                   setPendingPromotion(null);
                 }}
-                className={`flex h-11 w-11 items-center justify-center rounded-lg text-3xl leading-none hover:bg-emerald-100 ${
+                className={`flex h-11 w-11 items-center justify-center rounded-lg text-3xl leading-none hover:bg-sky-200/60 ${
                   moverIsWhite ? "text-white" : "text-neutral-900"
                 }`}
                 style={{ textShadow: moverIsWhite ? "0 1px 3px rgba(0,0,0,.8)" : "none" }}
